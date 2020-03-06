@@ -43,28 +43,18 @@ struct StoryBrain {
     ]
     var storyIndex: Int = 0;
     
-    mutating func createStory(title: String, choice1: String, choice2: String) {
-        let story = Story(title: title, choice1: choice1, choice2: choice2)
-        stories.append(story)
-    }
     func getStory() -> Story {
-        print(stories[storyIndex])
         return stories[storyIndex]
     }
     mutating func nextStory(userChoice: String) {
         let title = userChoice
-        print("Next story")
         print(title)
-        if title == stories[0].choice1 {
-            storyIndex = 1
+        if title == stories[storyIndex].choice1 {
+            storyIndex = stories[storyIndex].choice1Destination
             print(storyIndex)
-        } else if title == stories[0].choice2{
-            storyIndex = 2
-            print(storyIndex)
-        } else {
-            storyIndex = 0
+        } else if title ==  stories[storyIndex].choice2{
+            storyIndex = stories[storyIndex].choice2Destination
             print(storyIndex)
         }
-
     }
 }
